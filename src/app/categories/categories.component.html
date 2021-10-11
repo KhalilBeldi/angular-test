@@ -1,0 +1,38 @@
+<div class="container-fluid">
+
+<div class="d-flex justify-content-center">
+<h2>Category list</h2>
+</div>
+<button type="button" class="btn btn-success" routerLink="/categories/add">Add new category</button>
+<br>
+<br>
+<table id="category-table" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Creation date</th>
+        <th scope="col">Last update date</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories"
+      routerLink="/products/{{category.id}}"
+      >
+        <th scope="row">{{category.id}}</th>
+        <td>{{category.name}}</td>
+        <td>{{category.createdDate | date:'medium'}}</td>
+        <td>{{category.updatedDate | date:'medium'}}</td>
+        <td>
+          <button id="deletebtn" type="button" class="btn btn-outline-primary" routerLink="/categories/update/{{category.id}}">Modify</button>
+           &nbsp;
+          <button type="button" class="btn btn-outline-danger" (click) ="deleteCategory(category.id)">Delete</button>    
+        </td>
+      </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-outline-danger btn-sm" (click)="makePdf()">Export to PDF</button>
+&nbsp;
+<button type="button" class="btn btn-outline-success btn-sm" (click)="makeExcel()">Export to Excel</button>
+</div>

@@ -1,0 +1,21 @@
+<div class="container-fluid">
+<br>
+<div class="form-group">
+<div *ngIf="category">
+    <h2>{{category.name | uppercase}} Details</h2>
+    <div><span><strong>ID: </strong></span>{{category.id}}</div>
+    <div>
+      <div class="form-group w-25">
+        <label>Category name: </label>
+        <br>
+        <input type="text" class="form-control" id="category-name" [(ngModel)]="category.name" placeholder="name">
+        <br>
+        <button type="button" class="btn btn-secondary" (click)="save()">Save</button>
+      </div>
+  </div>
+  <br>
+<button class="rounded" (click)="goBack()">go back</button>
+</div>
+</div>
+
+
