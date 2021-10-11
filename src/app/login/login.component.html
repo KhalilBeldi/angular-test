@@ -15,7 +15,7 @@
     
             (ngSubmit)="f.form.valid && onSubmit()"
     
-            #f="ngForm"
+            
     
             novalidate
     
@@ -37,7 +37,7 @@
     
                 required
     
-                #username="ngModel"
+            
     
               />
     
@@ -47,7 +47,7 @@
     
                 role="alert"
     
-                *ngIf="username.errors && f.submitted">
+                *ngIf="username?.errors && f?.submitted">
     
                 Username is required!
     
@@ -72,7 +72,7 @@
       
                   minlength="6"
       
-                  #password="ngModel"
+                 
       
                 />
       
@@ -82,13 +82,13 @@
       
                   role="alert"
       
-                  *ngIf="password.errors && f.submitted"
+                  *ngIf="password?.errors && f.submitted"
       
                 >
       
-                  <div *ngIf="password.errors.required">Password is required</div>
+                  <div *ngIf="password?.errors.required">Password is required</div>
       
-                  <div *ngIf="password.errors.minlength">
+                  <div *ngIf="password?.errors.minlength">
       
                     Password must be at least 6 characters
       
@@ -118,7 +118,7 @@
       
                   role="alert"
       
-                  *ngIf="f.submitted && isLoginFailed"
+                  *ngIf="f?.submitted && isLoginFailed"
       
                 >
       
