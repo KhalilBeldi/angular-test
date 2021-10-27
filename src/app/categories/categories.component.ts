@@ -5,6 +5,7 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx'; 
+import { ExcelService } from '../excel.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class CategoriesComponent implements OnInit {
 
   categories: Category[] = [];
   
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService,private excelService:ExcelService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -42,16 +43,10 @@ export class CategoriesComponent implements OnInit {
     doc.save('categories.pdf')
   }
 
-  
-  makeExcel(): void{
-    let element = document.getElementById('category-table'); 
-    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+   exportAsXLSX():void {
 
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    this.excelService.exportAsExcelFile(this.categories, 'categories');
 
-    XLSX.writeFile(wb, "categories.xlsx");
-  }
-  
+ }
 
 }
